@@ -31,8 +31,16 @@ async def post_curso(post: Post):
     id = len(posts) +1
     posts[id] = post
     return post
-           
 
+@app.delete('/posts/{post_id}')
+def deletar_post(post_id: int):
+    del posts[post_id]
+    return{"msg": "post deletado"}  
+
+@app.put('/posts/{post_id}')
+def atualiza_post(post_id: int, post: Post):
+    post[post_id]= post 
+    return {"msg": "post Atualizado"}
 if __name__== '__main__':
     import uvicorn
     uvicorn.run('main:app',
